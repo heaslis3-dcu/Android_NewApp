@@ -1,5 +1,7 @@
 package id_16109759_hdsd.newfeedapi.api_interface;
 
+import android.util.Log;
+
 import java.security.cert.CertificateException;
 
 import javax.net.ssl.HostnameVerifier;
@@ -21,9 +23,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient
 {
     public static Retrofit retrofit;
-
+    public static String TAG = "ApiClient";
     public static Retrofit getApiClient() {
-
+Log.d(TAG, "Retrofit");
         if(retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(Contract.BASE_URL)
                     .client(getUnsafeOkHttpClient().build())

@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,7 +26,6 @@ import java.util.List;
 
 import id_16109759_hdsd.newfeedapi.R;
 import id_16109759_hdsd.newfeedapi.pojo_models_objects.Article;
-import id_16109759_hdsd.newfeedapi.pojo_models_objects.News;
 import id_16109759_hdsd.newfeedapi.utils.Utils;
 
 //public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
@@ -35,6 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 
     private List<Article> articles;
     private Context context;
+    private OnItemClickListener onItemClickListener;
 
     //Constructor to initialise List and Context objects
     public MyAdapter(List<Article> articles, Context context)
@@ -43,18 +43,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
         this.context = context;
     }
 
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType)
     {
-        View view = LayoutInflater.from(viewGroup.getContext())
+       // View view = LayoutInflater.from(viewGroup.getContext())
+        View view = LayoutInflater.from(context)
                 .inflate(R.layout.item, viewGroup, false);
 
-        return  new ViewHolder(view);
+        //Constructor is found below inner class -
+        // MyViewHolder(View itemView, OnItemClickListener onItemClickListener)
+        return  new ViewHolder(view, onItemClickListener);
     }
-
 
     //Implemented Method
     //Method used to bind the data from the class ViewHolder
@@ -65,10 +65,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
         Article article = articles.get(position);
 
         RequestOptions requestOptions = new RequestOptions();
-//        requestOptions.placeholder(Utils.getRandomDrawbleColor());
-//        requestOptions.error(Utils.getRandomDrawbleColor());
-//        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
-//        requestOptions.centerCrop();
+        requestOptions.placeholder(Utils.getRandomDrawbleColor());
+        requestOptions.error(Utils.getRandomDrawbleColor());
+        requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+        requestOptions.centerCrop();
 
         Glide.with(context)
                 .load(article.getUrlToImage())
@@ -95,10 +95,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
         holder.description.setText(article.getDescription());
         holder.source.setText(article.getAuthor());
         holder.time.setText(Utils.DateToTimeFormat(article.getPublishedAt()));
-
-
-
-
     }
 
     //Implemented Method
@@ -108,8 +104,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
         return articles.size();
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
     //Implemented Method
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         //Define 'list.xml' objects in Viewholder class
         public ImageView imageView;
@@ -117,7 +120,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
         public ProgressBar proBar;
 
         //Viewholder Constructor
-        public ViewHolder(@NonNull View itemView)
+        public ViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener)
         {
             super(itemView);
             imageView = itemView.findViewById(R.id.cardImg);
@@ -127,6 +130,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
             description = itemView.findViewById(R.id.desc);
             source = itemView.findViewById(R.id.source);
             time = itemView.findViewById(R.id.time);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onItemClickListener.onItemClick(v, getAdapterPosition());
         }
 
     }
