@@ -12,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,7 +71,26 @@ public class MainActivity extends AppCompatActivity implements  SwipeRefreshLayo
 
         topHeadline = findViewById(R.id.headlines);
         recyclerView = findViewById(R.id.recyclerview);
-        layoutManager = new LinearLayoutManager(MainActivity.this);
+
+        /**
+         * Date - 11/01/2019
+         * Ref - horizontal recyclerview
+         * https://stackoverflow.com/questions/28460300/
+         * how-to-build-a-horizontal-listview-with-recyclerview
+         */
+        layoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        /**
+         * SnapHelper - Mimics behaviour of ViewPager - scrolling one RecyclerView at a duration
+         * Date: 11/01/2018
+         * Ref:
+         * https://stackoverflow.com/questions/43024818/
+         * recyclerview-horizontal-scroll-how-to-display-one-item-at-a-scroll-like-pager/44457668
+         */
+        SnapHelper snapHelper = new PagerSnapHelper();
+        recyclerView.setLayoutManager(layoutManager);
+        snapHelper.attachToRecyclerView(recyclerView);
+
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

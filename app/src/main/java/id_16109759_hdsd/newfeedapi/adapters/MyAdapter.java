@@ -90,7 +90,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                 .into(holder.imageView);
 
 
-        holder.author.setText(article.getAuthor());
+//        holder.author.setText(article.getAuthor());
         holder.title.setText(article.getTitle());
         holder.description.setText(article.getDescription());
         holder.source.setText(article.getAuthor());
@@ -125,11 +125,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
             super(itemView);
             imageView = itemView.findViewById(R.id.cardImg);
             proBar = itemView.findViewById(R.id.progress_load_photo);
-            author = itemView.findViewById(R.id.author);
+//            author = itemView.findViewById(R.id.author);
             title = itemView.findViewById(R.id.title);
             description = itemView.findViewById(R.id.desc);
             source = itemView.findViewById(R.id.source);
-            time = itemView.findViewById(R.id.time);
+            time = itemView.findViewById(R.id.duration);
         }
 
         @Override
@@ -198,7 +198,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 //        holder.mTitle.setText(model.getTitle());
 //        holder.desc.setText(model.getDescription());
 //        holder.source.setText(model.getSource().getName());
-//        holder.time.setText(" \u2022 " + Utils.DateToTimeFormat(model.getPublishedAt()));
+//        holder.duration.setText(" \u2022 " + Utils.DateToTimeFormat(model.getPublishedAt()));
 //        holder.published_ad.setText(Utils.DateFormat(model.getPublishedAt()));
 //        holder.author.setText(model.getAuthor());
 //
@@ -224,7 +224,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 //                    mTitle = itemView.findViewById(R.id.title);
 //                    mDescription = itemView.findViewById(R.id.desc);
 //                    mSource = itemView.findViewById(R.id.source);
-//                    mTime = itemView.findViewById(R.id.time);
+//                    mTime = itemView.findViewById(R.id.duration);
 //
 //                    this.onItemClickListener = onItemClickListener;
 //
