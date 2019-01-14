@@ -1,6 +1,8 @@
 # Android_NewApp
 Rebuild of News App using news.org API
 
-http://gifs.com/gif/news-feed-calling-data-in-realtime-from-api-wmMl7X
+<h2>First Draft of App implementing an API call to show news data in realtime</h2>
+<img src="https://github.com/heaslis3-dcu/Android_NewApp/tree/master/arts/FirstDraftApp.mp4" align="middle">
 
-<iframe src='//gifs.com/embed/wmMl7X 'frameborder='0' scrolling='no' width='720px' height='1488px' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);' ></iframe>
+
+<h2>Coming soon......Second Draft implenting the MultiSnapRecyclerView with multiple rows containing different news feed.</h2>
