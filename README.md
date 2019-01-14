@@ -6,4 +6,5 @@ Rebuild of News App using news.org API
 
 <img src="https://github.com/heaslis3-dcu/Android_NewApp/blob/master/arts/VerticalScroll.gif" align="right" width="30%">
 
+<br>
 <h2>Coming soon......Second Draft implenting the MultiSnapRecyclerView with multiple rows containing different news feed.</h2>
